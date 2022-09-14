@@ -53,7 +53,7 @@ namespace FootballPlayerAPI.Controllers
         }
 
         // POST api/<ValuesController>
-        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPost]
         public ActionResult Post(FootballPlayer footballPlayer)
@@ -61,7 +61,7 @@ namespace FootballPlayerAPI.Controllers
             try
             {
                _manager.Add(footballPlayer);
-               return Ok(footballPlayer);
+               return Created("api/FootballPlayer", footballPlayer);                
             }
             catch (IndexOutOfRangeException e)
             {
@@ -93,9 +93,17 @@ namespace FootballPlayerAPI.Controllers
 
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public ActionResult Delete(int id)
         {
-            _manager.Delete(id);
+            try
+            {
+                _manager.Delete(id);
+                return Ok();
+            }
+            catch (InvalidCastException e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
