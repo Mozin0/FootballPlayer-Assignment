@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Server.IIS.Core;
 
 namespace FootballPlayerAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("footballPlayer")]
     [ApiController]
     public class FootballPlayerController : ControllerBase
     {
