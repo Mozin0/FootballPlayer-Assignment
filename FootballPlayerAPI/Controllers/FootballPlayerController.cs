@@ -92,6 +92,8 @@ namespace FootballPlayerAPI.Controllers
         }
 
         // DELETE api/<ValuesController>/5
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpDelete("{id}")]
         public ActionResult Delete(int id)
         {
